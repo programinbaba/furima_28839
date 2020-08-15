@@ -25,12 +25,12 @@
 | image         | string     | null: false                    |
 | name          | string     | null: false                    |
 | text          | text       | null: false                    |
-| price         | integer    | null: false                    |
 | category_id   | integer    | null: false                    |
 | status_id     | integer    | null: false                    |
 | cost_id       | integer    | null: false                    |
 | prefecture_id | integer    | null: false                    |
 | day_id        | integer    | null: false                    |
+| price         | integer    | null: false                    |
 | user          | references | null: false, foreign_key: true |
 
 ### Association
