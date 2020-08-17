@@ -48,9 +48,9 @@
 
 ### Association テーブル
 
-- belongs_to :user
-- belongs_to :item
-- has_one :detail
+- belongs_to: user
+- belongs_to: item
+- has_one: detail
 
 ## detail テーブル
 
@@ -67,4 +67,4 @@
 
 ### Association
 
-- belongs_to :sold_out
+- belongs_to: sold_out
