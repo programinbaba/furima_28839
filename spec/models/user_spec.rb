@@ -67,13 +67,13 @@ RSpec.describe User, type: :model do
         @user.save
         another_user = FactoryBot.build(:user, email: @user.email)
         another_user.valid?
-        
+        expect(another_user.errors.full_messages).to include("Email has already been taken")
       end
 
       it "emailが@を含んでいないと登録できない(厳密に言うと@の前後に文字列がないといけない)" do
         @user.email = "a.com"
         @user.valid?
-
+        expect(@user.errors.full_messages).to include("Email is invalid")
       end
 
       it "passwordが5文字以下であれば登録できない" do
