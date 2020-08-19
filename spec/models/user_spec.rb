@@ -46,15 +46,15 @@ RSpec.describe User, type: :model do
       end
 
       it "family_name_katakanaが空だと登録できない" do
-        @user.family_name = nil
+        @user.family_name_katakana = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("Family name is invalid")
+        expect(@user.errors.full_messages).to include("Family name katakana is invalid")
       end
 
       it "first_name_katakanaが空だと登録できない" do
-        @user.first_name = nil
+        @user.first_name_katakana = nil
         @user.valid?
-        expect(@user.errors.full_messages).to include("First name is invalid")
+        expect(@user.errors.full_messages).to include("First name katakana is invalid")
       end
 
       it "birthdayが空だと登録できない" do
@@ -83,6 +83,101 @@ RSpec.describe User, type: :model do
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
       
+      it "passwordが全角だと登録できない" do
+        @user.password = "田中1234"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it "passwordが半角英文字だけだと登録できない" do
+        @user.password = "yamada"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it "passwordが半角数字だけだと登録できない" do
+        @user.password = "123456"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it "passwordは確認用を含めて2回入力しないと登録できない" do
+        @user.password_confirmation = ""
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password confirmation doesn't match Password")
+      end
+
+      it "family_nameが半角だと登録できない" do
+        @user.family_name = "abc"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name is invalid")
+      end
+
+      it "family_nameが数字だと登録できない" do
+        @user.family_name = "123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name is invalid")
+      end
+
+      it "first_nameが半角だと登録できない" do
+        @user.first_name = "abc"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
+
+      it "first_nameが数字だと登録できない" do
+        @user.first_name = "123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name is invalid")
+      end
+
+      it "family_name_katakanaが半角だと登録できない" do
+        @user.family_name_katakana = "abc"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name katakana is invalid")
+      end
+
+      it "family_name_katakanaが数字だと登録できない" do
+        @user.family_name_katakana = "123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name katakana is invalid")
+      end
+
+      it "family_name_katakanaが全角ひらがなだと登録できない" do
+        @user.family_name_katakana = "あいう"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name katakana is invalid")
+      end
+
+      it "family_name_katakanaが全角漢字だと登録できない" do
+        @user.family_name_katakana = "山田"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Family name katakana is invalid")
+      end
+
+      it "first_name_katakanaが半角だと登録できない" do
+        @user.first_name_katakana = "abc"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name katakana is invalid")
+      end
+
+      it "first_name_katakanaが数字だと登録できない" do
+        @user.first_name_katakana = "123"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name katakana is invalid")
+      end
+
+      it "first_name_katakanaが全角ひらがなだと登録できない" do
+        @user.first_name_katakana = "あいう"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name katakana is invalid")
+      end
+
+      it "first_name_katakanaが全角漢字だと登録できない" do
+        @user.first_name_katakana = "山田"
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name katakana is invalid")
+      end
     end
   end
 end
