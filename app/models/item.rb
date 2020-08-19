@@ -2,6 +2,9 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   before_to_active_hash :category, :status, :cost, :prefecture, :day
 
+  belongs_to :user
+  has_one_attached :image
+
   # 空の投稿を保存できないようにする
   with_options presence: true do
     validates :name
