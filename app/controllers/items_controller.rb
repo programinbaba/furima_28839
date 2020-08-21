@@ -2,6 +2,9 @@ class ItemsController < ApplicationController
   before_action :move_to_index, except: :index
 
   def index
+    # @items = Item.includes(:user).order("created_at DESC")
+    query = "SELECT * FROM items ORDER BY created_at DESC"
+    @items = Item.find_by_sql(query)
   end
 
   def new
