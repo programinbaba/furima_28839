@@ -25,32 +25,23 @@
       </span>
     </div>
 
-    <%# ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物である(出品者以外は編集・削除ができない)とき表示 %>
     <% if user_signed_in? && current_user.id == @item.user_id %>
       <%= link_to '商品の編集', "#", method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', "#", method: :delete, class:'item-destroy' %>
     <% end %>
-    <%# //ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物である(出品者以外は編集・削除ができない)とき表示 %>
-      
-    <%# ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示 %>
+
     <% if user_signed_in? && current_user.id != @item.user_id %>
-      <%# 商品が売れていない場合に表示 %>
       <% unless @item.sold_out %>
         <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
       <% end %>
-      <%# //商品が売れていない場合に表示 %>
     <% end %>
-    <%# //ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示 %>
-
-    <%# ログインしていないユーザーも一応リンクは踏める(ログインしていないと購入はできないが) %>
+    
     <% unless user_signed_in? %>
       <% unless @item.sold_out %>
         <%= link_to '購入画面に進む', "#" ,class:"item-red-btn"%>
       <% end %>
     <% end %>
-    <%# //ログインしていないユーザーも一応リンクは踏める(ログインしていないと購入はできないが) %>
-
 
     <div class="item-explain-box">
       <span><%= "商品説明" %></span>
