@@ -32,6 +32,6 @@ class Item < ApplicationRecord
   # 300以上9,999,999(999万)より小さいか判別
   # numericalityは空を許可しないため、上のpresence: trueは不要
   validates :price, numericality: {
-    only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000
+    only_integer: true, greater_than_or_equal_to: 300, less_than: 10_000_000
   }
 end

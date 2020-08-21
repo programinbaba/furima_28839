@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  
+
   with_options presence: true do
     validates :nickname
     validates :family_name
@@ -24,7 +24,7 @@ class User < ApplicationRecord
     validates :family_name
     validates :first_name
   end
-  
+
   # カタカナのみに設定
   with_options format: { with: /\A[ァ-ン]+\Z/ } do
     validates :family_name_katakana
