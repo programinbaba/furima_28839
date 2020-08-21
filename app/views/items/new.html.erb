@@ -52,12 +52,6 @@
           <span class="indispensable">必須</span>
         </div>
         <%# collection_selectは、データをプルダウン形式で表示することができるメソッド %>
-        <%# 第一引数(メソッド名)    役割)カラム名,name属性やid属性を決める %>
-        <%# 第二引数(オブジェクト)  役割)配列データを指定する(今回はジャンルの配列) %>
-        <%# 第三引数(value)       役割)表示する際に参照するDBのカラム名 %>
-        <%# 第四引数(name)        役割)実際に表示されるカラム名%>
-        <%# 第五引数({})          役割)今回は指定なし %>
-        <%# オプション            役割)今回はクラス名を付与(cssを当てるため) %>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態
