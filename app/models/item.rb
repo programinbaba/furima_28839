@@ -12,14 +12,10 @@ class Item < ApplicationRecord
 
   # 空の投稿を保存できないようにする
   with_options presence: true do
+    validates :image
     validates :name
     validates :text
-    validates :category
-    validates :status
-    validates :cost
-    validates :prefecture
-    validates :day
-    validates :price
+    # validates :price  numericaliryで定義されているので不要
     validates :user
   end
 
@@ -31,4 +27,11 @@ class Item < ApplicationRecord
     validates :prefecture_id
     validates :day_id
   end
+
+  # 数字のみ(整数)で構成され(numericarilyはデフォルトでは小数点も許容するらしい)
+  # 300以上9,999,999(999万)より小さいか判別
+  # numericalityは空を許可しないため、上のpresence: trueは不要
+  validates :price, numericality: {
+    only_integer: true, greater_than_or_equal_to: 300, less_than: 10000000
+  }
 end
