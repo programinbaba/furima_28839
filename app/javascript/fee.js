@@ -7,7 +7,7 @@ function fee() {
   console.log(addTaxPrice.value)
   
   // 計算し、textContentでHTMLを解釈せずにそのまま文字として出力
-  const calculate = itemPrice.value * 0.1
+  const calculate = Math.floor(itemPrice.value * 0.1)
   addTaxPrice.textContent = calculate
   profit.textContent = itemPrice.value - calculate
 }
