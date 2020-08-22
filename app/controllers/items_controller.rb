@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_login, except: [:index, :show]
 
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -43,7 +43,7 @@ class ItemsController < ApplicationController
     ).merge(user_id: current_user.id)
   end
 
-  def move_to_index
+  def move_to_login
     redirect_to user_session_path unless user_signed_in?
   end
 end
