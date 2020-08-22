@@ -1,15 +1,14 @@
+<%# cssは商品出品のものを併用しています。
+app/assets/stylesheets/items/new.css %>
+
 <div class="items-sell-contents">
   <header class="items-sell-header">
     <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
-
   </header>
   <div class="items-sell-main">
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
 
-    <%# インスタンスを渡して、エラー発生時にメッセージを表示%>
-    <%# f.objectとは、インスタンスであり、どの値にもなる(例えば、上で定義されているような@item) %>
-    <%# エラーメッセージは、どのテストコードでも使うので、ユーザーで使われる際は@itemにもなる %>
     <%= render 'shared/error_messages', model: f.object %>
 
     <%# 出品画像 %>
@@ -51,7 +50,6 @@
           カテゴリー
           <span class="indispensable">必須</span>
         </div>
-        <%# collection_selectは、データをプルダウン形式で表示することができるメソッド %>
         <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
         <div class="weight-bold-text">
           商品の状態
@@ -113,8 +111,8 @@
           <span>販売利益</span>
           <span>
             <span id='profit'></span>円
+          </span>
         </div>
-        </span>
       </div>
     </div>
     <%# /販売価格 %>
@@ -140,8 +138,8 @@
     <%# /注意書き %>
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
-      <%= f.submit "出品する" ,class:"sell-btn" %>
-      <%=link_to 'もどる', root_path, class:"back-btn" %>
+      <%= f.submit "変更する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', "#", class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
