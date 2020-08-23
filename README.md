@@ -36,6 +36,7 @@
 
 - belongs_to :user
 - has_one :sold_out
+- has_one :dealing
 
 ## sold_out テーブル
 
@@ -49,9 +50,9 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :detail
+- has_one :dealing
 
-## detail テーブル
+## dealings テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -63,7 +64,9 @@
 | phone         | string     | null: false                    |
 | user          | references | null: false, foreign_key: true |
 | item          | references | null: false, foreign_key: true |
+| sold_out      | references | null: false, foreign_key: true |
 
 ### Association
 
+- belongs_to :items
 - belongs_to :sold_out
