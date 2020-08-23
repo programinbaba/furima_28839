@@ -14,6 +14,7 @@ RSpec.describe User, type: :model do
       end
     end
 
+    # 実装の条件を満たせていれば良い(エラー文がきちんと出ていればもうそのエラー文についてのテストコードはいらない)
     context '新規登録できないとき' do
       it 'nicknameが空だと登録できない' do
         @user.nickname = nil
@@ -30,6 +31,7 @@ RSpec.describe User, type: :model do
       it 'passwordが空だと登録できない' do
         @user.password = nil
         @user.valid?
+        # 厳密に言うと、エラー文は"Password can't be blank"
         expect(@user.errors.full_messages).to include('Password is invalid')
       end
 

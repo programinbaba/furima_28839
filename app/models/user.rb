@@ -20,13 +20,13 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX
 
   # 全角かな/カナ漢字の区別
-  with_options format: { with: /\A[ぁ-んァ-ン一-龥]+\Z/ } do
+  with_options format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
     validates :family_name
     validates :first_name
   end
 
   # カタカナのみに設定
-  with_options format: { with: /\A[ァ-ン]+\Z/ } do
+  with_options format: { with: /\A[ァ-ン]+\z/ } do
     validates :family_name_katakana
     validates :first_name_katakana
   end
