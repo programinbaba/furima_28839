@@ -6,17 +6,14 @@ class DealingsController < ApplicationController
   end
 
   def create
+    # 保存に失敗した時、@itemを定義していないとエラーが生じる
+    @item = Item.find(params[:item_id])
     # :token以外をデータベースに保存
-    # あとで変わるはず(Formオブジェクトを使うため)
-    @dealing = Dealing.new(
-      postal_code: dealing_params[:postal_code],
-      city: dealing_params[:city],
-      house_num: dealing_params[:house_num],
-      builidng: dealing_params[:builidng],
-      phone: dealing_params[:phone],
-    )
+    @dealing = UserDealing.new(dealing_params)
+    
     if @dealing.valid?
       pay_item
+      
       @dealing.save
       return redirect_to root_path
     else
@@ -30,14 +27,14 @@ class DealingsController < ApplicationController
   end
 
   def dealing_params
-    params.permit(:postal_code, :city, :house_num, :builidng, :phone, :token)
+    params.permit(:postal_code, :prefecture_id, :city, :house_num, :building, :phone, :item_id).merge(user_id: current_user.id)
   end
 
   def pay_item
     Payjp.api_key = "sk_test_220b7f3a7bf60b8e600bfc3b"  # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.price,          # 商品の価格
-      card: order_params[:token],   # カードトークン
+      card: params[:token],         # カードトークン
       currency: "jpy"               # 通貨の種類(日本円)
     )
   end
