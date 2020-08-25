@@ -1,14 +1,17 @@
 class UserDealing
 
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :house_num, :building, :phone, :user_id, :item_id
+  attr_accessor :postal_code, :prefecture_id, :city, :house_num, :building, :phone, :user_id, :item_id, :token 
 
   with_options presence: true do
     validates :postal_code
-    validates :prefecture_id
     validates :city
     validates :house_num
     validates :phone
+  end
+
+  with_options numericality: { other_than: 1 } do
+    validates :prefecture_id
   end
 
   # 郵便番号(「-」を含みかつ7桁)  \dは数字, {3}は3回
