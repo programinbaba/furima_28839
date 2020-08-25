@@ -9,7 +9,6 @@ class CreateDealings < ActiveRecord::Migration[6.0]
       t.string     :phone,         null: false
       t.references :user,          null: false, foreign_key: true
       t.references :item,          null: false, foreign_key: true
-      t.references :sold_out,      null: false, foreign_key: true
       t.timestamps
     end
   end

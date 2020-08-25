@@ -42,11 +42,9 @@ ActiveRecord::Schema.define(version: 2020_08_23_082146) do
     t.string "phone", null: false
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
-    t.bigint "sold_out_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["item_id"], name: "index_dealings_on_item_id"
-    t.index ["sold_out_id"], name: "index_dealings_on_sold_out_id"
     t.index ["user_id"], name: "index_dealings_on_user_id"
   end
 
@@ -94,7 +92,6 @@ ActiveRecord::Schema.define(version: 2020_08_23_082146) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "dealings", "items"
-  add_foreign_key "dealings", "sold_outs"
   add_foreign_key "dealings", "users"
   add_foreign_key "items", "users"
   add_foreign_key "sold_outs", "items"
