@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
+  has_many :sold_outs
 
   with_options presence: true do
     validates :nickname
@@ -20,13 +21,14 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX
 
   # 全角かな/カナ漢字の区別
-  with_options format: { with: /\A[ぁ-んァ-ン一-龥]+\Z/ } do
+  NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
+  with_options format: { with: NAME_REGEX } do
     validates :family_name
     validates :first_name
   end
 
   # カタカナのみに設定
-  with_options format: { with: /\A[ァ-ン]+\Z/ } do
+  with_options format: { with: /\A[ァ-ン]+\z/ } do
     validates :family_name_katakana
     validates :first_name_katakana
   end

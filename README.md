@@ -36,6 +36,7 @@
 
 - belongs_to :user
 - has_one :sold_out
+- has_one :dealing
 
 ## sold_out テーブル
 
@@ -49,9 +50,8 @@
 
 - belongs_to :user
 - belongs_to :item
-- has_one :detail
 
-## detail テーブル
+## dealings テーブル
 
 | Column        | Type       | Options                        |
 | ------------- | ---------- | ------------------------------ |
@@ -66,4 +66,5 @@
 
 ### Association
 
-- belongs_to :sold_out
+- belongs_to :user
+- belongs_to :item

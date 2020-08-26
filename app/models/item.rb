@@ -9,7 +9,8 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
-  has_one :sold_out
+  has_one :sold_out, dependent: :destroy
+  has_one :dealing, dependent: :destroy
 
   # 空の投稿を保存できないようにする
   with_options presence: true do
