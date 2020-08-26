@@ -57,5 +57,11 @@ RSpec.describe UserDealing, type: :model do
       @user_dealing.valid?
       expect(@user_dealing.errors.full_messages).to include('Phone is invalid')
     end
+
+    it "tokenが空の場合は保存できない" do
+      @user_dealing.token = nil
+      @user_dealing.valid?
+      # binding.pryでエラー文を見てみたが出てこなかった。
+    end
   end
 end

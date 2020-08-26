@@ -15,7 +15,7 @@ class UserDealing
 
   # 郵便番号(「-」を含みかつ7桁)  \dは数字, {3}は3回
   POSTAL_CODE_REGEX = /\A\d{3}[-]\d{4}\z/.freeze
-  with_options format: { POSTAL_CODE_REGEX } do
+  with_options format: { with: POSTAL_CODE_REGEX } do
     validates :postal_code
   end
 

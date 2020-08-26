@@ -22,7 +22,7 @@ class User < ApplicationRecord
 
   # 全角かな/カナ漢字の区別
   NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
-  with_options format: { NAME_REGEX } do
+  with_options format: { with: NAME_REGEX } do
     validates :family_name
     validates :first_name
   end
