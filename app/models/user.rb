@@ -21,14 +21,11 @@ class User < ApplicationRecord
   validates_format_of :password, with: PASSWORD_REGEX
 
   # 全角かな/カナ漢字の区別
-  NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze do
+  NAME_REGEX = /\A[ぁ-んァ-ン一-龥]+\z/.freeze
+  with_options format: { NAME_REGEX } do
     validates :family_name
     validates :first_name
   end
-  # with_options format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ } do
-  #   validates :family_name
-  #   validates :first_name
-  # end
 
   # カタカナのみに設定
   with_options format: { with: /\A[ァ-ン]+\z/ } do
