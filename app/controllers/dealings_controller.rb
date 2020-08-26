@@ -1,5 +1,7 @@
 class DealingsController < ApplicationController
+  
   before_action :move_to_login
+  before_action :move_to_toppage
   def index
     # カラムがitem_idなのは、ルーティングのネストで
     @item = Item.find(params[:item_id])
@@ -28,6 +30,19 @@ class DealingsController < ApplicationController
 
   def dealing_params
     params.permit(:postal_code, :prefecture_id, :city, :house_num, :building, :phone, :item_id).merge(user_id: current_user.id)
+  end
+
+  # 出品者はURLを直接入力して購入ページに遷移しようとすると、トップページに遷移
+  def move_to_toppage
+    @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id
+  end
+
+  # URLを直接入力し、購入済み商品の購入ページへ遷移しようとすると、トップページに遷移
+  def move_to_top_page
+    @item = Item.find(params[:item_id])
+    # もし商品のidと購入済みの商品のidが一致すればルートパスへ
+    redirect_to root_path if @item.id == @item.sold_out.id
   end
 
   def pay_item
