@@ -1,7 +1,6 @@
 class UserDealing
-
   include ActiveModel::Model
-  attr_accessor :postal_code, :prefecture_id, :city, :house_num, :building, :phone, :user_id, :item_id, :token 
+  attr_accessor :postal_code, :prefecture_id, :city, :house_num, :building, :phone, :user_id, :item_id, :token
 
   with_options presence: true do
     validates :postal_code
@@ -20,7 +19,7 @@ class UserDealing
   end
 
   # 電話番号(数字が11桁)
-  with_options format: {  with: /\A\d{11}\z/ } do
+  with_options format: { with: /\A\d{11}\z/ } do
     validates :phone
   end
 

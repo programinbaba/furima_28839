@@ -1,5 +1,4 @@
 class DealingsController < ApplicationController
-  
   before_action :move_to_login
   before_action :move_to_toppage
   def index
@@ -12,18 +11,19 @@ class DealingsController < ApplicationController
     @item = Item.find(params[:item_id])
     # :token以外をデータベースに保存
     @dealing = UserDealing.new(dealing_params)
-    
+
     if @dealing.valid?
       pay_item
-      
+
       @dealing.save
-      return redirect_to root_path
+      redirect_to root_path
     else
-      render "index"
+      render 'index'
     end
   end
 
   private
+
   def move_to_login
     redirect_to user_session_path unless user_signed_in?
   end
@@ -46,11 +46,11 @@ class DealingsController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]  # PAY.JPテスト秘密鍵
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY'] # PAY.JPテスト秘密鍵
     Payjp::Charge.create(
       amount: @item.price,          # 商品の価格
       card: params[:token],         # カードトークン
-      currency: "jpy"               # 通貨の種類(日本円)
+      currency: 'jpy'               # 通貨の種類(日本円)
     )
   end
 end
