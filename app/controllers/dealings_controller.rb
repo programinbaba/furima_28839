@@ -42,8 +42,8 @@ class DealingsController < ApplicationController
 
   # URLを直接入力し、購入済み商品の購入ページへ遷移しようとすると、トップページに遷移
   def move_to_top_page
-    # もし商品のidと購入済みの商品のidが一致すればルートパスへ
-    redirect_to root_path if @item.id == @item.sold_out.id
+    # もし購入済みの商品があればルートパスへ(アソシエーションでつながっているからできる記述)
+    redirect_to root_path if @item.sold_out
   end
 
   def pay_item
