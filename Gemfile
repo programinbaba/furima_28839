@@ -65,9 +65,10 @@ gem "mini_magick"
 gem "image_processing", "~> 1.2"
 gem "payjp"
 
-
 # rails_12factorは、開発環境ではなく本番環境で使用するgem
 # :productionで指定すると本番環境でのみ使用可
 group :production do
   gem "rails_12factor"
 end
+
+gem "aws-sdk-s3", require: false
