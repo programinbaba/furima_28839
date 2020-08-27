@@ -10,7 +10,6 @@ class DealingsController < ApplicationController
     # 保存に失敗した時、@itemを定義していないとエラーが生じる
     # :token以外をデータベースに保存
     @dealing = UserDealing.new(dealing_params)
-
     if @dealing.valid?
       pay_item
 

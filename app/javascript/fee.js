@@ -4,7 +4,6 @@ function fee() {
   const itemPrice = document.getElementById("item-price")
   const addTaxPrice = document.getElementById("add-tax-price")
   const profit = document.getElementById("profit")
-  console.log(addTaxPrice.value)
   
   // 計算し、textContentでHTMLを解釈せずにそのまま文字として出力
   const calculate = Math.floor(itemPrice.value * 0.1)
