@@ -25,18 +25,22 @@
       </span>
     </div>
 
+    <%# ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物である(出品者以外は編集・削除ができない)とき表示 %>
     <% if user_signed_in? && current_user.id == @item.user_id %>
       <%= link_to '商品の編集', edit_item_path(@item.id), class: "item-red-btn" %>
       <p class='or-text'>or</p>
+      <%# セッション(一時的に記憶)の仕組みにより引数がなくても削除などできてしまうのでは？ %>
       <%= link_to '削除', item_path(@item.id), method: :delete, class:'item-destroy' %>
     <% end %>
 
+    <%# ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物でないとき表示 %>
     <% if user_signed_in? && current_user.id != @item.user_id %>
       <% unless @item.sold_out %>
         <%= link_to '購入画面に進む', item_dealings_path(@item.id) ,class:"item-red-btn"%>
       <% end %>
     <% end %>
     
+    <%# //ログインしていないユーザーも一応リンクは踏める(ログインしていないと購入はできないが) %>
     <% unless user_signed_in? %>
       <% unless @item.sold_out %>
         <%= link_to '購入画面に進む', item_dealings_path(@item.id) ,class:"item-red-btn"%>
