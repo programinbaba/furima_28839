@@ -1,14 +1,9 @@
 /* border-bottom: 1px solid #eee; */
 
-#image-list {
-  display: flex;
-}
-
 #image-list img {
   height: 150px;
   width: 150px;
   object-fit: contain;
-  margin-right: 6px;
 }
 
 .items-sell-contents {
