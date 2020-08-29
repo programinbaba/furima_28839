@@ -1,11 +1,13 @@
 <%# 部分テンプレートとは、使い回しするもの(どこでも使えるようにする) %>
 <%# そこで、f.objectと定義している効果でここはmodelと書くだけでどのモデルのテストコードにも代用できる %>
 <% if model.errors.any? %>
-<div class="error-alert">
-  <ul>
-    <% model.errors.full_messages.each do |message| %>
-    <li class='error-message'><%= message %></li>
-    <% end %>
-  </ul>
-</div>
+  <div class="error-alert">
+    <ul>
+      <% model.errors.full_messages.each do |message| %>
+        <li class='error-message'>
+          <%= message %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>
