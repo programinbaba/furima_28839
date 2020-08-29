@@ -7,24 +7,11 @@ app/assets/stylesheets/items/new.css %>
     <%= form_with model: @item, local: true do |f| %>
       <%# new(商品出品)同様部分テンプレート使用(f(右)という文字列が代入されたf(左)という変数を使用可) %>
       <%= render partial: "shared/form", locals: { f: f } %>
-      <%# 下部ボタン %>
       <div class="sell-btn-contents">
         <%= f.submit "変更する" ,class:"sell-btn" %>
         <%=link_to 'もどる', item_path(@item.id), class:"back-btn" %>
       </div>
-      <%# /下部ボタン %>
     <% end %>
   </div>
-
-  <footer class="items-sell-footer">
-    <ul class="menu">
-      <li><a href="#">プライバシーポリシー</a></li>
-      <li><a href="#">フリマ利用規約</a></li>
-      <li><a href="#">特定商取引に関する表記</a></li>
-    </ul>
-    <%= link_to image_tag('furima-logo-color.png' , size: '185x50'), "/" %>
-    <p class="inc">
-      ©︎Furima,Inc.
-    </p>
-  </footer>
+  <%= render "shared/third-footer" %>
 </div>
