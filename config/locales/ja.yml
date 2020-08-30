@@ -1,4 +1,5 @@
 ja:
+  # 普通のモデルはactiverecord
   activerecord:
     attributes:
       user:
@@ -18,3 +19,12 @@ ja:
         prefecture_id: 配送元の地域
         day_id       : 発送までの日数
         price        : 価格
+  # Formオブジェクトはactivemodel
+  activemodel:
+    attributes:
+      user_dealing:
+        postal_code  : 郵便番号
+        city         : 市区町村
+        house_num    : 番地
+        phone        : 電話番号
+        prefecture_id: 都道府県
