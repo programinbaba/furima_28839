@@ -8,6 +8,13 @@ ja:
         family_name_katakana: 名字(カタカナ)
         first_name_katakana : 名前(カタカナ)
         birthday            : 生年月日
-      tweet:
-        text: テキスト
-        image: 画像
+      item:
+        image        : 画像
+        name         : 商品名
+        text         : 商品の説明
+        category_id  : カテゴリー
+        status_id    : 商品の状態
+        cost_id      : 配送料の負担
+        prefecture_id: 配送元の地域
+        day_id       : 発送までの日数
+        price        : 価格
