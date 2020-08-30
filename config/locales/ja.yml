@@ -28,3 +28,6 @@ ja:
         house_num    : 番地
         phone        : 電話番号
         prefecture_id: 都道府県
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
