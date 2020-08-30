@@ -1,0 +1,33 @@
+ja:
+  # 普通のモデルはactiverecord
+  activerecord:
+    attributes:
+      user:
+        nickname            : ニックネーム
+        family_name         : 名字
+        first_name          : 名前
+        family_name_katakana: 名字(カタカナ)
+        first_name_katakana : 名前(カタカナ)
+        birthday            : 生年月日
+      item:
+        image        : 画像
+        name         : 商品名
+        text         : 商品の説明
+        category_id  : カテゴリー
+        status_id    : 商品の状態
+        cost_id      : 配送料の負担
+        prefecture_id: 配送元の地域
+        day_id       : 発送までの日数
+        price        : 価格
+  # Formオブジェクトはactivemodel
+  activemodel:
+    attributes:
+      user_dealing:
+        postal_code  : 郵便番号
+        city         : 市区町村
+        house_num    : 番地
+        phone        : 電話番号
+        prefecture_id: 都道府県
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"

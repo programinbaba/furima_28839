@@ -9,18 +9,18 @@ class UserDealing
     validates :phone
   end
 
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: "を選択してください" } do
     validates :prefecture_id
   end
 
   # 郵便番号(「-」を含みかつ7桁)  \dは数字, {3}は3回
   POSTAL_CODE_REGEX = /\A\d{3}[-]\d{4}\z/.freeze
-  with_options format: { with: POSTAL_CODE_REGEX } do
+  with_options format: { with: POSTAL_CODE_REGEX, message: "は「-(ハイフン)」を含み7桁で入力してください" } do
     validates :postal_code
   end
 
   # 電話番号(数字が11桁)
-  with_options format: { with: /\A\d{11}\z/ } do
+  with_options format: { with: /\A\d{11}\z/, message: "は「-(ハイフン)」を含まず数字11桁で入力してください" } do
     validates :phone
   end
 

@@ -18,11 +18,10 @@ class Item < ApplicationRecord
     validates :name
     validates :text
     # validates :price  numericaliryで定義されているので不要
-    validates :user
   end
 
   # ジャンルの選択が「---」の時は保存できないようにする
-  with_options numericality: { other_than: 1 } do
+  with_options numericality: { other_than: 1, message: "を選択してください" } do
     validates :category_id
     validates :status_id
     validates :cost_id

@@ -14,48 +14,49 @@ RSpec.describe UserDealing, type: :model do
       @user_dealing.token = nil
       @user_dealing.valid?
       # 購入ボタンを押すと、フリーズする(更新すれば直る)
+      # サーバーと通信できない(402エラー)
     end
 
     it '郵便番号がないと保存できない' do
       @user_dealing.postal_code = nil
       @user_dealing.valid?
-      expect(@user_dealing.errors.full_messages).to include("Postal code can't be blank")
+      expect(@user_dealing.errors.full_messages).to include("郵便番号を入力してください")
     end
 
     it '都道府県がないと保存できない' do
       @user_dealing.prefecture_id = 1
       @user_dealing.valid?
-      expect(@user_dealing.errors.full_messages).to include('Prefecture must be other than 1')
+      expect(@user_dealing.errors.full_messages).to include('都道府県を選択してください')
     end
 
     it '市区町村がないと保存できない' do
       @user_dealing.city = nil
       @user_dealing.valid?
-      expect(@user_dealing.errors.full_messages).to include("City can't be blank")
+      expect(@user_dealing.errors.full_messages).to include("市区町村を入力してください")
     end
 
     it '番地がないと保存できない' do
       @user_dealing.house_num = nil
       @user_dealing.valid?
-      expect(@user_dealing.errors.full_messages).to include("House num can't be blank")
+      expect(@user_dealing.errors.full_messages).to include("番地を入力してください")
     end
 
     it '電話番号がないと保存できない' do
       @user_dealing.phone = nil
       @user_dealing.valid?
-      expect(@user_dealing.errors.full_messages).to include("Phone can't be blank")
+      expect(@user_dealing.errors.full_messages).to include("電話番号を入力してください")
     end
 
     it '郵便番号にハイフンがないと保存できない' do
       @user_dealing.postal_code = '1111111'
       @user_dealing.valid?
-      expect(@user_dealing.errors.full_messages).to include('Postal code is invalid')
+      expect(@user_dealing.errors.full_messages).to include('郵便番号は「-(ハイフン)」を含み7桁で入力してください')
     end
 
     it '電話番号にハイフンは不要で、11桁でないと保存できない' do
       @user_dealing.phone = '111-1111-11111'
       @user_dealing.valid?
-      expect(@user_dealing.errors.full_messages).to include('Phone is invalid')
+      expect(@user_dealing.errors.full_messages).to include('電話番号は「-(ハイフン)」を含まず数字11桁で入力してください')
     end
 
     it "tokenが空の場合は保存できない" do

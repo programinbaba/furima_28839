@@ -23,6 +23,9 @@
       <span class="item-postage">
         (税込) 送料込み
       </span>
+      <span class="item-date">
+        <%= l @item.updated_at %>
+      </span>
     </div>
 
     <%# ログインしていて、なおかつ、ログインしているユーザと出品しているユーザが同一人物である(出品者以外は編集・削除ができない)とき表示 %>

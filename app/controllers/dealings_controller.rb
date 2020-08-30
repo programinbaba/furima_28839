@@ -3,7 +3,8 @@ class DealingsController < ApplicationController
   before_action :item_id_params
   before_action :move_to_toppage
   before_action :move_to_top_page
-  def index
+  def index  # indexがnewの役割もやっているイメージ
+    @dealing = UserDealing.new
   end
 
   def create
@@ -25,7 +26,7 @@ class DealingsController < ApplicationController
     redirect_to user_session_path unless user_signed_in?
   end
 
-  def dealing_params
+  def dealing_params  # form_withにmodelを指定するときは、requireが必要
     params.permit(:postal_code, :prefecture_id, :city, :house_num, :building, :phone, :item_id).merge(user_id: current_user.id)
   end
 
