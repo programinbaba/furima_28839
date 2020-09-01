@@ -7,24 +7,33 @@ if (document.URL.match( /new/ ) || document.URL.match( /edit/ )) {
       const imageElement = document.createElement("div")
       imageElement.setAttribute("id", "image-element")
       let imageElementNum = document.querySelectorAll("#image-element").length
-
       const blobImage = document.createElement("img")
       blobImage.setAttribute("src", blob)
 
-      const inputHTML = document.createElement("input")
-      inputHTML.setAttribute("id", `item_image_${imageElementNum}`)
-      inputHTML.setAttribute("name", "message[images][]")
-      inputHTML.setAttribute("type", "file")
-
+      // <div id="image-list><div id="image-element"><img src=blob><inputHTML></div></div>
       imageElement.appendChild(blobImage)
-      imageElement.appendChild(inputHTML)
       imageList.appendChild(imageElement)
 
-      inputHTML.addEventListener("change", (e) => {
-        file = e.target.files[0]
-        blob = window.URL.createObjectURL(file)
+      // <input id="item_image_数字" name="message[images][]" type="file">
+      const inputHTML = document.createElement("input")
+      // 画像投稿枚数を6枚に制限(6枚目の画像の下にinputが生成されない)
+      if (imageElementNum < 5) {
+        inputHTML.setAttribute("id", `item_image_${imageElementNum}`)
+        inputHTML.setAttribute("name", "item[images][]")
+        inputHTML.setAttribute("type", "file")
+        
+        imageElement.appendChild(inputHTML)
+      }
 
-        createImageHTML(blob)
+      inputHTML.addEventListener("change", (e) => {
+        console.log(imageElementNum)
+        // 画像投稿枚数を6枚に制限
+        if (imageElementNum < 5) {
+          file = e.target.files[0]
+          blob = window.URL.createObjectURL(file)
+
+          createImageHTML(blob)
+        }
       })
     }
 
